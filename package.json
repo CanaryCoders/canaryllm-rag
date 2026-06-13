@@ -1,0 +1,39 @@
+{
+  "name": "@canarycoders/canaryllm-rag",
+  "version": "0.1.0",
+  "description": "Bun-first RAG toolkit for CanaryLLM: parse, chunk, embed (via the gateway) and store vectors in your own pgvector/sqlite store. Nothing leaves your infrastructure except transient embedding calls.",
+  "license": "MIT",
+  "author": "CanaryCoders",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./store/pgvector": {
+      "types": "./dist/store/pgvector.d.ts",
+      "import": "./dist/store/pgvector.js",
+      "require": "./dist/store/pgvector.cjs"
+    }
+  },
+  "files": ["dist", "README.md", "LICENSE"],
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "bun test test/unit",
+    "build": "tsup"
+  },
+  "keywords": ["canaryllm", "rag", "embeddings", "pgvector", "retrieval", "bun"],
+  "engines": { "node": ">=18" },
+  "dependencies": {
+    "@canarycoders/canaryllm": "^0.2.0"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "tsup": "^8.0.0",
+    "typescript": "^5.5.0"
+  }
+}
