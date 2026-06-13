@@ -5,6 +5,10 @@
   "license": "MIT",
   "author": "CanaryCoders",
   "type": "module",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -24,7 +28,9 @@
   "scripts": {
     "typecheck": "tsc --noEmit",
     "test": "bun test test/unit",
-    "build": "tsup"
+    "build": "tsup",
+    "prepare": "tsup",
+    "prepublishOnly": "bun run build && bun run typecheck && bun run test"
   },
   "keywords": ["canaryllm", "rag", "embeddings", "pgvector", "retrieval", "bun"],
   "engines": { "node": ">=18" },
