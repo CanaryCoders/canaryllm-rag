@@ -1,7 +1,7 @@
 {
-  "name": "@canarycoders/canaryllm-rag",
-  "version": "0.1.0",
-  "description": "Bun-first RAG toolkit for CanaryLLM: parse, chunk, embed (via the gateway) and store vectors in your own pgvector/sqlite store. Nothing leaves your infrastructure except transient embedding calls.",
+  "name": "@canarycoders/ai-rag",
+  "version": "0.2.0",
+  "description": "Bun-first RAG toolkit for CanaryCoders AI: parse, chunk, embed (via the gateway) and store vectors in your own pgvector/sqlite store. Nothing leaves your infrastructure except transient embedding calls.",
   "license": "MIT",
   "author": "CanaryCoders",
   "type": "module",
@@ -35,7 +35,7 @@
   "keywords": ["canaryllm", "rag", "embeddings", "pgvector", "retrieval", "bun"],
   "engines": { "node": ">=18" },
   "dependencies": {
-    "@canarycoders/canaryllm": "^0.2.0"
+    "@canarycoders/ai": "^0.3.0"
   },
   "devDependencies": {
     "@types/bun": "latest",

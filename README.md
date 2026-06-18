@@ -1,8 +1,8 @@
-# @canarycoders/canaryllm-rag
+# @canarycoders/ai-rag
 
-Bun-first RAG toolkit for [CanaryLLM](https://canaryllm.canarycoders.es). Parse, chunk, embed and retrieve over your own documents — **the documents, chunks, embeddings and vector index all stay on your infrastructure.** CanaryLLM only does the transient embedding and chat calls; it stores nothing.
+Bun-first RAG toolkit for [CanaryCoders AI](https://ai.canarycoders.es). Parse, chunk, embed and retrieve over your own documents — **the documents, chunks, embeddings and vector index all stay on your infrastructure.** CanaryLLM only does the transient embedding and chat calls; it stores nothing.
 
-It builds on the official SDK ([`@canarycoders/canaryllm`](https://github.com/CanaryCoders/canaryllm-sdk)) and adds the RAG layer: a recursive token chunker, text extraction, a pluggable vector store (pgvector adapter included), and ingest/retrieve orchestration.
+It builds on the official SDK ([`@canarycoders/ai`](https://github.com/CanaryCoders/canaryllm-sdk)) and adds the RAG layer: a recursive token chunker, text extraction, a pluggable vector store (pgvector adapter included), and ingest/retrieve orchestration.
 
 ## Why this shape
 
@@ -11,7 +11,7 @@ Embeddings derived from your documents are themselves personal data (text can be
 ## Install
 
 ```bash
-bun add @canarycoders/canaryllm-rag @canarycoders/canaryllm
+bun add @canarycoders/ai-rag @canarycoders/ai
 ```
 
 You also need a Postgres with the [`pgvector`](https://github.com/pgvector/pgvector) extension (or implement the `VectorStore` interface for another store), and an LM Studio embedding model loaded behind your CanaryLLM gateway (e.g. `nomic-embed-text-v1.5`).
@@ -20,9 +20,9 @@ You also need a Postgres with the [`pgvector`](https://github.com/pgvector/pgvec
 
 ```ts
 import { Pool } from "pg";
-import { CanaryLLM } from "@canarycoders/canaryllm";
-import { canaryEmbedder, ingestDocuments, retrieve, buildRagMessages } from "@canarycoders/canaryllm-rag";
-import { PgVectorStore } from "@canarycoders/canaryllm-rag/store/pgvector";
+import { CanaryLLM } from "@canarycoders/ai";
+import { canaryEmbedder, ingestDocuments, retrieve, buildRagMessages } from "@canarycoders/ai-rag";
+import { PgVectorStore } from "@canarycoders/ai-rag/store/pgvector";
 
 const client = new CanaryLLM({ apiKey: process.env.CANARYLLM_API_KEY });
 const embedder = canaryEmbedder(client, { model: "nomic-embed-text-v1.5" });
@@ -54,7 +54,7 @@ console.log(answer.content);
 The toolkit ingests plain text (`RagDocument.text`). For HTML and Markdown, use the built-in extractors:
 
 ```ts
-import { htmlToText, markdownToText, extractText } from "@canarycoders/canaryllm-rag";
+import { htmlToText, markdownToText, extractText } from "@canarycoders/ai-rag";
 
 const text = htmlToText(rawHtml);
 const md = markdownToText(rawMarkdown);
@@ -81,7 +81,7 @@ await ingestDocuments(
 `chunkDocument` / `splitTextIntoChunks` use a recursive splitter (paragraph → line → sentence → word → char) that packs pieces up to `chunkSize` tokens with `chunkOverlap` tokens of carry-over. The default token count is a ~4-chars-per-token estimate; pass a real tokenizer for exact sizing:
 
 ```ts
-import { splitTextIntoChunks } from "@canarycoders/canaryllm-rag";
+import { splitTextIntoChunks } from "@canarycoders/ai-rag";
 
 const chunks = splitTextIntoChunks(text, {
   chunkSize: 512,
@@ -95,18 +95,18 @@ const chunks = splitTextIntoChunks(text, {
 Implement `VectorStore` to back the toolkit with sqlite-vec, Qdrant, Weaviate, etc.:
 
 ```ts
-import type { VectorStore } from "@canarycoders/canaryllm-rag";
+import type { VectorStore } from "@canarycoders/ai-rag";
 ```
 
 `PgVectorStore` takes any node-postgres-shaped client (`{ query(sql, params) }`), so the `pg` driver and your credentials stay your dependency — they never touch this package.
 
 ## Local development
 
-This package depends on `@canarycoders/canaryllm`. Until both are published to npm, link the SDK for local work:
+This package depends on `@canarycoders/ai`. Until both are published to npm, link the SDK for local work:
 
 ```bash
 cd ../canaryllm-sdk && bun link
-cd ../canaryllm-rag && bun link @canarycoders/canaryllm && bun install
+cd ../canaryllm-rag && bun link @canarycoders/ai && bun install
 ```
 
 ```bash

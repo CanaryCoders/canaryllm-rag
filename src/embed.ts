@@ -1,4 +1,4 @@
-import type { CanaryLLM } from "@canarycoders/canaryllm";
+import type { CanaryLLM } from "@canarycoders/ai";
 
 /** Turns text into vectors. Decouples ingest/retrieve from any specific backend. */
 export interface Embedder {

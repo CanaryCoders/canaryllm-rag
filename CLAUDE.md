@@ -1,6 +1,6 @@
 # canaryllm-rag
 
-Bun-first RAG toolkit (`@canarycoders/canaryllm-rag`). Builds on the official SDK `@canarycoders/canaryllm`; adds chunking, text extraction, vector-store adapters, and ingest/retrieve. Zero runtime deps except the SDK. Node 18+ / Bun.
+Bun-first RAG toolkit (`@canarycoders/ai-rag`). Builds on the official SDK `@canarycoders/ai`; adds chunking, text extraction, vector-store adapters, and ingest/retrieve. Zero runtime deps except the SDK. Node 18+ / Bun.
 
 ## Privacy contract (do not break)
 
@@ -16,7 +16,7 @@ Documents, chunks, embeddings and the vector index live in the **customer's** st
 
 ## Sync
 
-The SDK's `client.embeddings.create` shape is the contract. If the gateway's embeddings endpoint changes, update the SDK first, then this toolkit. Keep `dependencies["@canarycoders/canaryllm"]` at the matching semver.
+The SDK's `client.embeddings.create` shape is the contract. If the gateway's embeddings endpoint changes, update the SDK first, then this toolkit. Keep `dependencies["@canarycoders/ai"]` at the matching semver.
 
 ## Commands
 
@@ -26,4 +26,4 @@ bun test
 bun run build      # tsup → dist (ESM + CJS + .d.ts), 2 entries: . and ./store/pgvector
 ```
 
-Local dev needs the SDK linked (`bun link @canarycoders/canaryllm`) until both are on npm.
+Local dev needs the SDK linked (`bun link @canarycoders/ai`) until both are on npm.

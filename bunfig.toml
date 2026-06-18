@@ -1,0 +1,5 @@
+# @canarycoders packages publish to the PUBLIC npm registry. Some machines' global
+# ~/.bunfig.toml routes @canarycoders to GitHub Packages (legacy) — override that here
+# so `bun install` resolves @canarycoders/ai (and the rest) from public npm.
+[install.scopes]
+"@canarycoders" = "https://registry.npmjs.org/"

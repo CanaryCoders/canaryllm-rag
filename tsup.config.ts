@@ -8,5 +8,5 @@ export default defineConfig({
   sourcemap: true,
   treeshake: true,
   // The CanaryLLM SDK is a peer at runtime; never bundle it.
-  external: ["@canarycoders/canaryllm"],
+  external: ["@canarycoders/ai"],
 });
