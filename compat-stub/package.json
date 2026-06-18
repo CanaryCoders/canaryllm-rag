@@ -1,0 +1,20 @@
+{
+  "name": "@canarycoders/canaryllm-rag",
+  "version": "0.1.1",
+  "description": "DEPRECATED — renamed to @canarycoders/ai-rag. Thin re-export shim.",
+  "license": "MIT",
+  "author": "CanaryCoders",
+  "type": "module",
+  "main": "./index.cjs",
+  "module": "./index.js",
+  "types": "./index.d.ts",
+  "files": ["index.js","index.cjs","index.d.ts","store","README.md"],
+  "publishConfig": { "access": "public", "registry": "https://registry.npmjs.org/" },
+  "exports": {
+    ".": { "types": "./index.d.ts", "import": "./index.js", "require": "./index.cjs" },
+    "./store/pgvector": { "types": "./store/pgvector.d.ts", "import": "./store/pgvector.js", "require": "./store/pgvector.cjs" },
+    "./package.json": "./package.json"
+  },
+  "dependencies": { "@canarycoders/ai-rag": "^0.2.0" },
+  "engines": { "node": ">=18" }
+}
